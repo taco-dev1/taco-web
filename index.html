@@ -4,33 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>el_tacosg - Roblox Developer</title>
-
-    <!-- Content Security Policy -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; img-src 'self' https://*.imgur.com; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
-    />
-
-    <!-- Odkaz na externí CSS soubor -->
     <link rel="stylesheet" href="style.css" />
-
   </head>
   <body>
     <header>
       <h1>el_tacosg</h1>
-      <p>I'm a Roblox Developer from Czech Republic</p>
+      <div class="developer-text">
+        I'm a Roblox Developer from Czech Republic
+      </div>
     </header>
 
-    <div class="hero-section">
-      <a href="https://www.roblox.com/users/2488479952/profile" class="button" target="_blank">Visit My Roblox Profile</a>
-      <img src="https://i.imgur.com/tJUXBuD.png" alt="Taco" class="taco" />
+    <div class="info-section">
+      <h2>About Me</h2>
+      <p>
+        I am a passionate Roblox developer from the Czech Republic. I specialize
+        in creating immersive and engaging experiences in Roblox Studio. My
+        focus is on scripting, game design, and creating high-quality assets.
+      </p>
+      <p>
+        Whether you need a custom game built from the ground up, or a skilled
+        scripter to help bring your ideas to life, I am ready to assist you in
+        creating the perfect experience.
+      </p>
+      <a
+        href="https://www.roblox.com/users/2488479952/profile"
+        class="button"
+        target="_blank"
+        >Visit My Roblox Profile</a
+      >
     </div>
 
-    <footer>
-      <p>Contact me for collaboration and Roblox development opportunities!</p>
-    </footer>
+    <div class="contact">
+      <button id="contact-btn">Contact Me</button>
+      <p id="email" style="display: none">daniel.mysik@gmail.com</p>
+    </div>
 
-    <!-- Odkaz na externí JavaScript soubor -->
+    <div class="flying-taco">
+      <img src="https://i.imgur.com/tJUXBuD.png" alt="Flying Taco" />
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>
