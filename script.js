@@ -12,6 +12,18 @@ links.forEach(link => {
   });
 });
 
-// Adding click animation to buttons
-const buttons = document.querySelectorAll('.btn');
-buttons.forEach(button =>
+// Adding click animation effect
+const body = document.querySelector('body');
+body.addEventListener('click', function(e) {
+  const clickEffect = document.createElement('div');
+  clickEffect.classList.add('click-effect');
+  clickEffect.style.width = '100px';
+  clickEffect.style.height = '100px';
+  clickEffect.style.left = `${e.clientX - 50}px`;
+  clickEffect.style.top = `${e.clientY - 50}px`;
+  body.appendChild(clickEffect);
+
+  setTimeout(() => {
+    clickEffect.remove();
+  }, 500);
+});
