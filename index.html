@@ -1,378 +1,325 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Roblox Developer | Taco_System - Create amazing Roblox games!">
-  <meta name="keywords" content="Roblox, developer, games, game development, creative">
-  <meta name="author" content="Taco_System">
-  <title>Taco_System - Roblox Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet"> <!-- Google Fonts -->
-  <style>
-    /* Global Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
-    }
-
-    body {
-      background-color: #121212;
-      color: #fff;
-      line-height: 1.6;
-      cursor: url('https://www.example.com/your-custom-cursor.png'), auto; /* Custom Cursor with Build Icon */
-    }
-
-    /* Header */
-    header {
-      background: linear-gradient(to right, #6a0dad, #3b2f8c);
-      color: #fff;
-      padding: 20px 0;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    header .logo h1 {
-      font-size: 2.5rem;
-      color: #fff;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      text-shadow: 0 0 5px #6a0dad, 0 0 10px #6a0dad, 0 0 15px #6a0dad;
-      animation: glitter 3s infinite;
-    }
-
-    nav ul {
-      list-style-type: none;
-      display: flex;
-    }
-
-    nav ul li {
-      margin-left: 20px;
-    }
-
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 1.1rem;
-      transition: color 0.3s ease;
-    }
-
-    nav ul li a:hover {
-      color: #ff4081;
-      text-shadow: 0 0 10px #ff4081;
-    }
-
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(to right, #6a0dad, #3b2f8c);
-      color: white;
-      padding: 80px 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero .hero-content h2 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      animation: glitter 2s infinite;
-    }
-
-    .hero .hero-content p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-      opacity: 0.8;
-    }
-
-    .hero .btn {
-      background: #ff4081;
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      font-size: 1.1rem;
-      border-radius: 5px;
-      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .hero .btn:hover {
-      background: #9b36b6;
-      transform: scale(1.1);
-      box-shadow: 0 0 10px #ff4081;
-    }
-
-    /* Portfolio Section */
-    #portfolio {
-      background-color: #222222;
-      padding: 60px 0;
-    }
-
-    #portfolio h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-      text-shadow: 0 0 5px #ff4081, 0 0 10px #ff4081;
-      animation: glitter 2s infinite;
-    }
-
-    .projects {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .project {
-      background-color: #333333;
-      width: 30%;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .project:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    .project img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 20px;
-    }
-
-    .project h3 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      color: #fff;
-    }
-
-    .project p {
-      font-size: 1rem;
-      color: #ddd;
-    }
-
-    /* About Section */
-    #about {
-      background-color: #6a0dad;
-      color: white;
-      padding: 60px 0;
-      text-align: center;
-    }
-
-    #about h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-
-    #about p {
-      font-size: 1.2rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    /* Contact Section */
-    #contact {
-      background-color: #222222;
-      padding: 60px 0;
-      text-align: center;
-    }
-
-    #contact h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-
-    #contact p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-    }
-
-    #contact .btn {
-      background: #ff4081;
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      font-size: 1.1rem;
-      border-radius: 5px;
-      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    #contact .btn:hover {
-      background: #9b36b6;
-      transform: scale(1.1);
-    }
-
-    /* Footer */
-    footer {
-      background: #121212;
-      color: white;
-      padding: 30px 0;
-      text-align: center;
-    }
-
-    footer .social-links a {
-      color: #fff;
-      margin: 0 10px;
-      text-decoration: none;
-      font-size: 1.2rem;
-      transition: color 0.3s ease;
-    }
-
-    footer .social-links a:hover {
-      color: #ff4081;
-    }
-
-    /* Glitter Animation */
-    @keyframes glitter {
-      0% {
-        text-shadow: 0 0 5px #ff4081, 0 0 10px #ff4081, 0 0 15px #ff4081;
-      }
-      50% {
-        text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081, 0 0 30px #ff4081;
-      }
-      100% {
-        text-shadow: 0 0 5px #ff4081, 0 0 10px #ff4081, 0 0 15px #ff4081;
-      }
-    }
-
-    /* Custom Mouse Click Animation */
-    @keyframes clickAnimation {
-      0% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(0);
-        opacity: 0;
-      }
-    }
-
-    .click-effect {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255, 64, 129, 0.6);
-      pointer-events: none;
-      transform: scale(1);
-      animation: clickAnimation 0.5s forwards;
-    }
-
-    /* Media Queries for Mobile */
-    @media only screen and (max-width: 768px) {
-      header .container {
-        flex-direction: column;
-        align-items: center;
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taco Dev Portfolio</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #1a1a1a;
+        color: #fff;
       }
 
-      .projects {
-        flex-direction: column;
-        align-items: center;
+      header {
+        background-color: #800000;
+        padding: 20px;
+        text-align: center;
       }
 
-      .project {
-        width: 80%;
+      h1 {
+        margin: 0;
+        color: #fff;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .frame {
+        border: 3px solid #800000;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+        background-color: #000;
+      }
+
+      .tabs {
+        display: flex;
         margin-bottom: 20px;
       }
-    }
-  </style>
-</head>
-<body>
 
-  <!-- Header Section -->
-  <header>
+      .tab {
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+        cursor: pointer;
+        margin-right: 10px;
+        border-radius: 5px 5px 0 0;
+      }
+
+      .tab.active {
+        background-color: #800000;
+      }
+
+      .content {
+        display: none;
+      }
+
+      .content.active {
+        display: block;
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .item {
+        background-color: #333;
+        padding: 15px;
+        border-radius: 5px;
+      }
+
+      .item img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+      }
+
+      .item video {
+        width: 100%;
+        border-radius: 5px;
+      }
+
+      .description {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #ccc;
+      }
+
+      footer {
+        background-color: #800000;
+        padding: 15px;
+        text-align: center;
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Taco Dev Portfolio</h1>
+    </header>
+
     <div class="container">
-      <div class="logo">
-        <h1>Taco_System</h1>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <h2>Welcome to the world of Roblox Development</h2>
-      <p>Immersive games, creative designs, and custom Roblox experiences by Taco_System.</p>
-      <a href="#portfolio" class="btn">Explore My Portfolio</a>
-    </div>
-  </section>
-
-  <!-- Portfolio Section -->
-  <section id="portfolio">
-    <div class="container">
-      <h2>My Work</h2>
-      <div class="projects">
-        <div class="project">
-          <img src="https://via.placeholder.com/300x200" alt="Project 1">
-          <h3>Game 1</h3>
-          <p>Engaging adventure game with immersive worlds.</p>
+      <div class="frame">
+        <div class="tabs">
+          <div class="tab active" onclick="showContent('photos')">Fotky</div>
+          <div class="tab" onclick="showContent('videos')">Videa</div>
         </div>
-        <div class="project">
-          <img src="https://via.placeholder.com/300x200" alt="Project 2">
-          <h3>Game 2</h3>
-          <p>Fast-paced action game with custom mechanics.</p>
+
+        <div id="photos" class="content active">
+          <h2>Fotografie (12)</h2>
+          <div class="gallery">
+            <!-- Photo 1 -->
+            <div class="item">
+              <img
+                src="https://i.ibb.co/ksJTtzbP/553-D3-D06-C8-B5-4-B12-9-D14-6-F4834714-F40.png"
+                alt="Safe Zone"
+              />
+              <div class="description">
+                discord bot.py - zde jsem dělal bota pro CRRP (měl jsem ho
+                spojeného s Roblox group)
+              </div>
+            </div>
+
+            <!-- Photo 2 -->
+            <div class="item">
+              <img
+                src="https://i.ibb.co/nsgkXrH1/6-DD95-AA9-2-A3-F-4-B22-A874-244-CBC3-C00-BF.png"
+                alt="Foto 2"
+              />
+              <div class="description">Safe Zoney</div>
+            </div>
+
+            <!-- Photo 3 -->
+            <div class="item">
+              <img
+                src="https://i.ibb.co/Hpdj5BVD/961-ED4-DF-FF35-4-F1-A-8-CAA-933428-F74564.png"
+                alt="Foto 3"
+              />
+              <div class="description">Safe Zone</div>
+            </div>
+
+            <!-- Photo 4 -->
+            <div class="item">
+              <img
+                src="https://i.ibb.co/RTQN5b7r/D140-F5-C3-0-F9-E-4-D25-ABF5-60-C71-CAD58-DE.png"
+                alt="Foto 4"
+              />
+              <div class="description">
+                Zde jsem dělal locker system, locknutý na Group nebo na týmy jde
+                to změnit v modulu
+              </div>
+            </div>
+
+            <!-- Photo 5 -->
+            <div class="item">
+              <img
+                src="https://i.ibb.co/B2sjSjzN/2-FF08905-03-E9-4381-AF6-A-386-CAAED8-AD6.png"
+                alt="Foto 5"
+              />
+              <div class="description">Loading Screen</div>
+            </div>
+
+            <!-- Photo 6 -->
+            <div class="item">
+              <img
+                src="https://i.ibb.co/5WLp0SHh/63221031-DF89-44-CD-B61-E-0-F06-C8948-FA6.png"
+                alt="Foto 6"
+              />
+              <div class="description">
+                Funkční radary -fungovaly jen na chassis vozidla checkovaly jim
+                value.
+              </div>
+            </div>
+
+            <!-- Photo 7 -->
+            <div class="item">
+              <img
+                src="https://i.ibb.co/JRbpMjVg/3-F5-EB335-05-EB-4599-A287-A9074331-E9-B7.png"
+                alt="Foto 7"
+              />
+              <div class="description">Zde jsem dělal animaci koně, model je fm bohužel modelovat neumím viz. video</div>
+            </div>
+
+            <!-- Photo 8 -->
+            <div class="item">
+              <img
+                src="https://i.ibb.co/hJhkqRKB/50mf8b.jpg"
+                alt="Foto 8"
+              />
+              <div class="description">Weld scripty pro pčr štít</div>
+            </div>
+
+            <!-- Photo 9 -->
+            <div class="item">
+              <img
+                src="https://i.ibb.co/hxJnzNBg/EA4-C4-B27-5-F90-4699-BC78-9-C3-D1-D8470-EF.png"
+                alt="Foto 9"
+              />
+              <div class="description">Něco málo z ekonomiky vše pak napíšu do dms</div>
+            </div>
+
+            <!-- Photo 10 -->
+            <div class="item">
+              <img
+                src="https://via.placeholder.com/300x200?text=Foto+10"
+                alt="Foto 10"
+              />
+              <div class="description">Popis desáté fotky</div>
+            </div>
+
+            <!-- Photo 11 -->
+            <div class="item">
+              <img
+                src="https://via.placeholder.com/300x200?text=Foto+11"
+                alt="Foto 11"
+              />
+              <div class="description">Popis jedenácté fotky</div>
+            </div>
+
+            <!-- Photo 12 -->
+            <div class="item">
+              <img
+                src="https://via.placeholder.com/300x200?text=Foto+12"
+                alt="Foto 12"
+              />
+              <div class="description">Popis dvanácté fotky</div>
+            </div>
+          </div>
         </div>
-        <div class="project">
-          <img src="https://via.placeholder.com/300x200" alt="Project 3">
-          <h3>Game 3</h3>
-          <p>Innovative puzzle game with creative levels.</p>
+
+        <div id="videos" class="content">
+          <h2>Videa (5)</h2>
+          <div class="gallery">
+            <!-- Video 1 - Streamable -->
+            <div class="item">
+              <div style="position:relative;padding-top:56.25%;"> <!-- 16:9 Aspect Ratio -->
+                <iframe 
+                  src="https://streamable.com/e/actsd9" 
+                  frameborder="0" 
+                  allowfullscreen
+                  style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                </iframe>
+              </div>
+              <div class="description">Popis prvního videa</div>
+            </div>
+        
+            <!-- Video 2 - Příklad dalšího videa -->
+            <div class="item">
+              <div style="position:relative;padding-top:56.25%;">
+                <iframe 
+                  src="https://streamable.com/kkfoz3" 
+                  frameborder="0" 
+                  allowfullscreen
+                  style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                </iframe>
+              </div>
+              <div class="description">Popis druhého videa</div>
+            </div>
+
+                        
+            <div class="item">
+              <div style="position:relative;padding-top:56.25%;">
+                <iframe 
+                  src="https://streamable.com/50mf8b" 
+                  frameborder="0" 
+                  allowfullscreen
+                  style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                </iframe>
+              </div>
+              <div class="description">Zastavovací pásy</div>
+            </div>
+
+                                 
+            <div class="item">
+              <div style="position:relative;padding-top:56.25%;">
+                <iframe 
+                  src="https://streamable.com/ba72ex" 
+                  frameborder="0" 
+                  allowfullscreen
+                  style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                </iframe>
+              </div>
+              <div class="description">Ruční Radar</div>
+            </div>
+        
+            <!-- Zbývající videa 3-5 -->
+            <!-- ... -->
+          </div>
+        </div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- About Section -->
-  <section id="about">
-    <div class="container">
-      <h2>About Me</h2>
-      <p>Hi, I’m Taco_System, a passionate Roblox developer from the Czech Republic. I specialize in creating immersive games with a focus on user experience and creative design.</p>
-    </div>
-  </section>
+    <footer>&copy; 2023 Taco Dev Portfolio</footer>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <div class="container">
-      <h2>Contact Me</h2>
-      <p>Let's collaborate on your next Roblox project! Feel free to reach out to me via email or social media.</p>
-      <a href="mailto:taco_system@example.com" class="btn">Email Me</a>
-    </div>
-  </section>
+    <script>
+      function showContent(contentId) {
+        // Hide all content
+        const contents = document.querySelectorAll(".content");
+        contents.forEach((content) => {
+          content.classList.remove("active");
+        });
 
-  <!-- Footer Section -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Taco_System. All Rights Reserved.</p>
-      <div class="social-links">
-        <a href="https://twitter.com/Taco_System" target="_blank">Twitter</a>
-        <a href="https://www.linkedin.com/in/Taco_System" target="_blank">LinkedIn</a>
-      </div>
-    </div>
-  </footer>
+        // Show selected content
+        document.getElementById(contentId).classList.add("active");
 
-  <script src="script.js"></script>
-</body>
+        // Update active tab
+        const tabs = document.querySelectorAll(".tab");
+        tabs.forEach((tab) => {
+          tab.classList.remove("active");
+        });
+
+        event.currentTarget.classList.add("active");
+      }
+    </script>
+  </body>
 </html>
