@@ -1,63 +1,298 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Taco Dev Portfolio</title>
+    <title>Taco Dev | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      body {
-        font-family: Arial, sans-serif;
+      :root {
+        --primary: #800000;
+        --primary-dark: #600000;
+        --primary-light: #a04040;
+        --dark: #121212;
+        --darker: #0a0a0a;
+        --light: #f5f5f5;
+        --gray: #333333;
+        --light-gray: #cccccc;
+      }
+
+      * {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        background-color: #1a1a1a;
-        color: #fff;
+      }
+
+      /* Custom Cursor Styles */
+      .cursor {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: var(--primary-light);
+        opacity: 0.8;
+        pointer-events: none;
+        mix-blend-mode: difference;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease;
+      }
+
+      .cursor-follower {
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        border: 2px solid var(--primary-light);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: transform 0.4s ease, width 0.3s ease, height 0.3s ease;
+        opacity: 0.5;
+      }
+
+      body.cursor-active .cursor {
+        width: 15px;
+        height: 15px;
+      }
+
+      body.cursor-active .cursor-follower {
+        width: 30px;
+        height: 30px;
+      }
+
+      body.cursor-active .tab:hover ~ .cursor,
+      body.cursor-active a:hover ~ .cursor,
+      body.cursor-active button:hover ~ .cursor {
+        transform: translate(-50%, -50%) scale(1.5);
+        background-color: var(--primary);
+      }
+
+      body.cursor-active .tab:hover ~ .cursor-follower,
+      body.cursor-active a:hover ~ .cursor-follower,
+      body.cursor-active button:hover ~ .cursor-follower {
+        transform: translate(-50%, -50%) scale(1.2);
+        border-color: var(--primary);
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--dark);
+        color: var(--light);
+        line-height: 1.6;
+        cursor: none;
+        overflow-x: hidden;
+      }
+
+      body.cursor-active {
+        cursor: none;
       }
 
       header {
-        background-color: #800000;
-        padding: 20px;
+        background: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+        padding: 2rem 1rem;
         text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      header::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at var(--x) var(--y),
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 20%
+        );
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      header:hover::after {
+        opacity: 1;
       }
 
       h1 {
         margin: 0;
-        color: #fff;
+        font-weight: 700;
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+        position: relative;
+        display: inline-block;
+      }
+
+      h1::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: var(--light);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+      }
+
+      h1:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      h2 {
+        color: var(--light);
+        border-bottom: 2px solid var(--primary);
+        padding-bottom: 0.5rem;
+        margin-top: 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--primary-light),
+          transparent
+        );
+        transform: translateX(-100%);
+        animation: shine 3s infinite;
+      }
+
+      @keyframes shine {
+        0% {
+          transform: translateX(-100%);
+        }
+        50% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
       }
 
       .container {
         max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        animation: fadeIn 1s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .frame {
-        border: 3px solid #800000;
-        border-radius: 10px;
-        padding: 20px;
-        margin-bottom: 30px;
-        background-color: #000;
+        border: 3px solid var(--primary);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        background-color: var(--darker);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        transform: perspective(1000px) rotateX(0deg);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+      }
+
+      .frame:hover {
+        transform: perspective(1000px) rotateX(5deg);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
       }
 
       .tabs {
         display: flex;
-        margin-bottom: 20px;
+        margin-bottom: 1.5rem;
+        gap: 0.5rem;
       }
 
       .tab {
-        padding: 10px 20px;
-        background-color: #333;
-        color: #fff;
-        cursor: pointer;
-        margin-right: 10px;
-        border-radius: 5px 5px 0 0;
+        padding: 0.75rem 1.5rem;
+        background-color: var(--gray);
+        color: var(--light);
+        cursor: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+        border: none;
+        font-family: inherit;
+        font-size: 1rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .tab::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 100%
+        );
+        transform: translateY(100%);
+        transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+      }
+
+      .tab:hover::before {
+        transform: translateY(0);
+      }
+
+      .tab:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-3px);
       }
 
       .tab.active {
-        background-color: #800000;
+        background-color: var(--primary);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 0 15px rgba(128, 0, 0, 0.4);
       }
 
       .content {
         display: none;
+        animation: fadeIn 0.6s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .content.active {
@@ -66,42 +301,182 @@
 
       .gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
       }
 
       .item {
-        background-color: #333;
-        padding: 15px;
-        border-radius: 5px;
+        background-color: var(--gray);
+        padding: 1rem;
+        border-radius: 8px;
+        transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+        overflow: hidden;
+        position: relative;
+        transform-style: preserve-3d;
       }
 
-      .item img {
+      .item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
-        height: auto;
-        border-radius: 5px;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(128, 0, 0, 0.3) 0%,
+          transparent 100%
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
       }
 
+      .item:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      }
+
+      .item:hover::before {
+        opacity: 1;
+      }
+
+      .item img,
       .item video {
         width: 100%;
-        border-radius: 5px;
+        height: auto;
+        border-radius: 6px;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+
+      .item:hover img,
+      .item:hover video {
+        transform: scale(1.05);
       }
 
       .description {
-        margin-top: 10px;
-        font-size: 14px;
-        color: #ccc;
+        margin-top: 0.75rem;
+        font-size: 0.9rem;
+        color: var(--light-gray);
+        padding: 0 0.5rem;
+        transition: color 0.3s ease;
+      }
+
+      .item:hover .description {
+        color: var(--light);
+      }
+
+      .video-container {
+        position: relative;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        margin-bottom: 0.5rem;
+        border-radius: 6px;
+        overflow: hidden;
+        transform-style: preserve-3d;
+      }
+
+      .video-container::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(128, 0, 0, 0.2) 0%,
+          transparent 100%
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .video-container:hover::after {
+        opacity: 1;
+      }
+
+      .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
       }
 
       footer {
-        background-color: #800000;
-        padding: 15px;
+        background: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+        padding: 1.5rem;
         text-align: center;
-        margin-top: 30px;
+        margin-top: 3rem;
+        font-weight: 300;
+        position: relative;
+      }
+
+      footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--light),
+          transparent
+        );
+      }
+
+      .counter {
+        display: inline-block;
+        background-color: var(--primary);
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+        transition: all 0.3s ease;
+      }
+
+      .tab:hover .counter {
+        transform: scale(1.1);
+        background-color: var(--primary-dark);
+      }
+
+      @media (max-width: 768px) {
+        .gallery {
+          grid-template-columns: 1fr;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        .tabs {
+          flex-wrap: wrap;
+        }
+
+        /* Disable custom cursor on mobile */
+        body {
+          cursor: default;
+        }
+        .cursor,
+        .cursor-follower {
+          display: none;
+        }
       }
     </style>
   </head>
-  <body>
+  <body class="cursor-active">
+    <!-- Custom Cursor Elements -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
     <header>
       <h1>Taco Dev Portfolio</h1>
     </header>
@@ -109,22 +484,27 @@
     <div class="container">
       <div class="frame">
         <div class="tabs">
-          <div class="tab active" onclick="showContent('photos')">Fotky</div>
-          <div class="tab" onclick="showContent('videos')">Videa</div>
+          <button class="tab active" onclick="showContent('photos')">
+            Photos <span class="counter">12</span>
+          </button>
+          <button class="tab" onclick="showContent('videos')">
+            Videos <span class="counter">6</span>
+          </button>
         </div>
 
         <div id="photos" class="content active">
-          <h2>Fotografie (12)</h2>
+          <h2>My Projects</h2>
           <div class="gallery">
             <!-- Photo 1 -->
             <div class="item">
               <img
                 src="https://i.ibb.co/ksJTtzbP/553-D3-D06-C8-B5-4-B12-9-D14-6-F4834714-F40.png"
-                alt="Safe Zone"
+                alt="Discord Bot"
+                loading="lazy"
               />
               <div class="description">
-                discord bot.py - zde jsem dělal bota pro CRRP (měl jsem ho
-                spojeného s Roblox group)
+                Discord bot.py - A bot I created for CRRP (connected to a Roblox
+                group)
               </div>
             </div>
 
@@ -132,29 +512,32 @@
             <div class="item">
               <img
                 src="https://i.ibb.co/nsgkXrH1/6-DD95-AA9-2-A3-F-4-B22-A874-244-CBC3-C00-BF.png"
-                alt="Foto 2"
+                alt="Safe Zones"
+                loading="lazy"
               />
-              <div class="description">Safe Zoney</div>
+              <div class="description">Safe Zone system implementation</div>
             </div>
 
             <!-- Photo 3 -->
             <div class="item">
               <img
                 src="https://i.ibb.co/Hpdj5BVD/961-ED4-DF-FF35-4-F1-A-8-CAA-933428-F74564.png"
-                alt="Foto 3"
+                alt="Safe Zone UI"
+                loading="lazy"
               />
-              <div class="description">Safe Zone</div>
+              <div class="description">Safe Zone user interface design</div>
             </div>
 
             <!-- Photo 4 -->
             <div class="item">
               <img
                 src="https://i.ibb.co/RTQN5b7r/D140-F5-C3-0-F9-E-4-D25-ABF5-60-C71-CAD58-DE.png"
-                alt="Foto 4"
+                alt="Locker System"
+                loading="lazy"
               />
               <div class="description">
-                Zde jsem dělal locker system, locknutý na Group nebo na týmy jde
-                to změnit v modulu
+                Locker system - can be locked to a Group or Teams (configurable
+                in the module)
               </div>
             </div>
 
@@ -162,20 +545,22 @@
             <div class="item">
               <img
                 src="https://i.ibb.co/B2sjSjzN/2-FF08905-03-E9-4381-AF6-A-386-CAAED8-AD6.png"
-                alt="Foto 5"
+                alt="Loading Screen"
+                loading="lazy"
               />
-              <div class="description">Loading Screen</div>
+              <div class="description">Custom loading screen design</div>
             </div>
 
             <!-- Photo 6 -->
             <div class="item">
               <img
                 src="https://i.ibb.co/5WLp0SHh/63221031-DF89-44-CD-B61-E-0-F06-C8948-FA6.png"
-                alt="Foto 6"
+                alt="Radar System"
+                loading="lazy"
               />
               <div class="description">
-                Funkční radary -fungovaly jen na chassis vozidla checkovaly jim
-                value.
+                Functional radar system - worked with vehicle chassis by
+                checking their values
               </div>
             </div>
 
@@ -183,138 +568,190 @@
             <div class="item">
               <img
                 src="https://i.ibb.co/JRbpMjVg/3-F5-EB335-05-EB-4599-A287-A9074331-E9-B7.png"
-                alt="Foto 7"
+                alt="Horse Animation"
+                loading="lazy"
               />
-              <div class="description">Zde jsem dělal animaci koně, model je fm bohužel modelovat neumím viz. video</div>
+              <div class="description">
+                Horse animation work (model is FM as I'm not skilled in modeling
+                - see video)
+              </div>
             </div>
 
             <!-- Photo 8 -->
             <div class="item">
               <img
                 src="https://i.ibb.co/hJhkqRKB/50mf8b.jpg"
-                alt="Foto 8"
+                alt="Spike Strip System"
+                loading="lazy"
               />
-              <div class="description">Spike stril system</div>
+              <div class="description">Spike strip deployment system</div>
             </div>
-            
 
             <!-- Photo 9 -->
             <div class="item">
               <img
                 src="https://i.ibb.co/hxJnzNBg/EA4-C4-B27-5-F90-4699-BC78-9-C3-D1-D8470-EF.png"
-                alt="Foto 9"
+                alt="Economy System"
+                loading="lazy"
               />
-              <div class="description">Něco málo z ekonomiky vše pak napíšu do dms</div>
+              <div class="description">
+                Economy system implementation (details available upon request)
+              </div>
             </div>
 
             <!-- Photo 10 -->
             <div class="item">
               <img
-                src="https://via.placeholder.com/300x200?text=Foto+10"
-                alt="Foto 10"
+                src="https://via.placeholder.com/300x200?text=Project+10"
+                alt="Project 10"
+                loading="lazy"
               />
-              <div class="description">Popis desáté fotky</div>
+              <div class="description">And I also scripted al economy with guyis, bots, webhooks etc</div>
             </div>
 
             <!-- Photo 11 -->
             <div class="item">
               <img
-                src="https://via.placeholder.com/300x200?text=Foto+11"
-                alt="Foto 11"
+                src="https://via.placeholder.com/300x200?text=Project+11"
+                alt="Project 11"
+                loading="lazy"
               />
-              <div class="description">Popis jedenácté fotky</div>
+              <div class="description">Project description coming soon</div>
             </div>
 
             <!-- Photo 12 -->
             <div class="item">
               <img
-                src="https://via.placeholder.com/300x200?text=Foto+12"
-                alt="Foto 12"
+                src="https://via.placeholder.com/300x200?text=Project+12"
+                alt="Project 12"
+                loading="lazy"
               />
-              <div class="description">Popis dvanácté fotky</div>
+              <div class="description">Project description coming soon</div>
             </div>
           </div>
         </div>
 
         <div id="videos" class="content">
-          <h2>Videa (5)</h2>
+          <h2>Project Demonstrations</h2>
           <div class="gallery">
-            <!-- Video 1 - Streamable -->
+            <!-- Video 1 -->
             <div class="item">
-              <div style="position:relative;padding-top:56.25%;"> <!-- 16:9 Aspect Ratio -->
-                <iframe 
-                  src="https://streamable.com/e/actsd9" 
-                  frameborder="0" 
+              <div class="video-container">
+                <iframe
+                  src="https://streamable.com/rx7dky"
+                  frameborder="0"
                   allowfullscreen
-                  style="position:absolute;top:0;left:0;width:100%;height:100%;">
-                </iframe>
+                  loading="lazy"
+                ></iframe>
               </div>
-              <div class="description">Popis prvního videa</div>
-            </div>
-        
-            <!-- Video 2 - Příklad dalšího videa -->
-            <div class="item">
-              <div style="position:relative;padding-top:56.25%;">
-                <iframe 
-                  src="https://streamable.com/kkfoz3" 
-                  frameborder="0" 
-                  allowfullscreen
-                  style="position:absolute;top:0;left:0;width:100%;height:100%;">
-                </iframe>
-              </div>
-              <div class="description">Popis druhého videa</div>
+              <div class="description">Project demonstration video</div>
             </div>
 
-                        
+            <!-- Video 2 -->
             <div class="item">
-              <div style="position:relative;padding-top:56.25%;">
-                <iframe 
-                  src="https://streamable.com/50mf8b" 
-                  frameborder="0" 
+              <div class="video-container">
+                <iframe
+                  src="https://streamable.com/eka4oi"
+                  frameborder="0"
                   allowfullscreen
-                  style="position:absolute;top:0;left:0;width:100%;height:100%;">
-                </iframe>
+                  loading="lazy"
+                ></iframe>
               </div>
-              <div class="description">Zastavovací pásy</div>
+              <div class="description">
+                AntiNoclip - one of my modules in my anticheat system
+              </div>
             </div>
 
-                                 
+            <!-- Video 3 -->
             <div class="item">
-              <div style="position:relative;padding-top:56.25%;">
-                <iframe 
-                  src="https://streamable.com/ba72ex" 
-                  frameborder="0" 
+              <div class="video-container">
+                <iframe
+                  src="https://streamable.com/1m6har"
+                  frameborder="0"
                   allowfullscreen
-                  style="position:absolute;top:0;left:0;width:100%;height:100%;">
-                </iframe>
+                  loading="lazy"
+                ></iframe>
               </div>
-              <div class="description">Ruční Radar</div>
+              <div class="description">Spike strip system in action</div>
             </div>
-            
+
+            <!-- Video 4 -->
             <div class="item">
-              <div style="position:relative;padding-top:56.25%;">
-                <iframe 
-                  src="https://streamable.com/5rj7xg" 
-                  frameborder="0" 
+              <div class="video-container">
+                <iframe
+                  src="https://streamable.com/6q7fmd"
+                  frameborder="0"
                   allowfullscreen
-                  style="position:absolute;top:0;left:0;width:100%;height:100%;">
-                </iframe>
+                  loading="lazy"
+                ></iframe>
               </div>
-              <div class="description">Client re detection</div>
+              <div class="description">Handheld radar implementation</div>
             </div>
-        
-            <!-- Zbývající videa 3-5 -->
-            <!-- ... -->
-          </div>
-        </div>
+
+            <!-- Video 5 -->
+            <div class="item">
+              <div class="video-container">
+                <iframe
+                  src="https://streamable.com/rx7ky"
+                  frameborder="0"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+              <div class="description">Client-side detection system</div>
+            </div>
+
+            <!-- Video 6 -->
+            <div class="item">
+              <div class="video-container">
+                <iframe
+                  src="https://streamable.com/xn66l3"
+                  frameborder="0"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+              <div class="description">Anti RE spy - part of my anticheat</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <footer>&copy; 2025 Taco Dev Portfolio</footer>
+    <footer>&copy; 2025 Taco Dev | All Rights Reserved</footer>
 
     <script>
+      // Custom cursor logic
+      const cursor = document.querySelector(".cursor");
+      const cursorFollower = document.querySelector(".cursor-follower");
+      const cursorActiveElements = document.querySelectorAll(
+        "a, button, .tab, .item, [data-cursor-active]"
+      );
+
+      document.addEventListener("mousemove", (e) => {
+        cursor.style.left = e.clientX + "px";
+        cursor.style.top = e.clientY + "px";
+
+        // Add slight delay to follower for smooth trailing effect
+        setTimeout(() => {
+          cursorFollower.style.left = e.clientX + "px";
+          cursorFollower.style.top = e.clientY + "px";
+        }, 100);
+      });
+
+      cursorActiveElements.forEach((element) => {
+        element.addEventListener("mouseenter", () => {
+          cursor.classList.add("cursor-active");
+          cursorFollower.classList.add("cursor-follower-active");
+        });
+
+        element.addEventListener("mouseleave", () => {
+          cursor.classList.remove("cursor-active");
+          cursorFollower.classList.remove("cursor-follower-active");
+        });
+      });
+
+      // Tab switching functionality
       function showContent(contentId) {
         // Hide all content
         const contents = document.querySelectorAll(".content");
@@ -333,6 +770,40 @@
 
         event.currentTarget.classList.add("active");
       }
+
+      // Header gradient effect
+      const header = document.querySelector("header");
+      header.addEventListener("mousemove", (e) => {
+        const x = (e.clientX / window.innerWidth) * 100;
+        const y = (e.clientY / window.innerHeight) * 100;
+        header.style.setProperty("--x", `${x}%`);
+        header.style.setProperty("--y", `${y}%`);
+      });
+
+      // Lazy loading for images and iframes
+      document.addEventListener("DOMContentLoaded", function () {
+        const lazyMedia = document.querySelectorAll("[loading='lazy']");
+
+        const lazyLoad = (target) => {
+          const io = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const target = entry.target;
+                if (target.tagName === "IMG") {
+                  target.src = target.src;
+                } else if (target.tagName === "IFRAME") {
+                  target.src = target.src;
+                }
+                observer.unobserve(target);
+              }
+            });
+          });
+
+          io.observe(target);
+        };
+
+        lazyMedia.forEach(lazyLoad);
+      });
     </script>
   </body>
 </html>
